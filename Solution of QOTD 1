@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-struct contact
+struct contact//creating structure
 {
     int ph;
     char name[10];
@@ -12,18 +12,18 @@ int main()
     struct contact c[10];
     int ch, k = 0;
     char s = 'y';
+    printf("1. Add Contact\n");
+    printf("2. Delete Contact\n");
+    printf("3. Update Contact\n");
+    printf("4. Search Contact\n");
+    printf("5. Display Contacts\n");
+    printf("6. Exit\n");
     do
     {
-        printf("1. Add Contact\n");
-        printf("2. Delete Contact\n");
-        printf("3. Update Contact\n");
-        printf("4. Search Contact\n");
-        printf("5. Display Contacts\n");
-        printf("6. Exit\n");
         printf("Enter your choice:\n");
         scanf("%d", &ch);
 
-        switch(ch)
+        switch(ch)//menu 
         {
             case 1:
                 printf("Enter name: ");
@@ -41,9 +41,9 @@ int main()
                 scanf("%s", delName);
                 for(int i=0;i<k;i++)
                 {
-                    if(strcmp(delName,c[i].name) == 0)
+                    if(strcmp(delName,c[i].name) == 0)//to check if name exists
                     {
-                        for(int j=i;j<k-1;j++)
+                        for(int j=i;j<k-1;j++)//run a loop to copy elements and paste it into another string and delete the contact asked by user
                         {
                             strcpy(c[j].name, c[j+1].name);
                             c[j].ph = c[j+1].ph;
@@ -91,17 +91,17 @@ int main()
                 {
                     for(int j=0;j<k-i-1;j++) 
                     {
-                        if(strcmp(c[j].name,c[j+1].name)>0) 
+                        if(strcmp(c[j].name,c[j+1].name)>0)//to check if name exists  
                         {
-                            struct contact temp=c[j];
+                            struct contact temp=c[j];//swapping elements based on alphabetical order
                             c[j]=c[j+1];
                             c[j+1]=temp;
                         }
                     }
                 }
-
                 printf("Contact List:\n");
-                for (int i = 0; i < k; i++) {
+                for (int i = 0; i < k; i++)
+                {
                     printf("Name: %s\n", c[i].name);
                     printf("Phone: %d\n", c[i].ph);
                     printf("Email: %s\n", c[i].email);
