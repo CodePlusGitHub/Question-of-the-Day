@@ -1,0 +1,119 @@
+#include <stdio.h>
+#include <string.h>
+struct contact
+{
+    int ph;
+    char name[10];
+    char email[50];
+};
+
+int main() 
+{
+    struct contact c[10];
+    int ch, k = 0;
+    char s = 'y';
+    do
+    {
+        printf("1. Add Contact\n");
+        printf("2. Delete Contact\n");
+        printf("3. Update Contact\n");
+        printf("4. Search Contact\n");
+        printf("5. Display Contacts\n");
+        printf("6. Exit\n");
+        printf("Enter your choice:\n");
+        scanf("%d", &ch);
+
+        switch(ch)
+        {
+            case 1:
+                printf("Enter name: ");
+                scanf("%s", c[k].name);
+                printf("Enter phone number: ");
+                scanf("%d", &c[k].ph);
+                printf("Enter email address: ");
+                scanf("%s", c[k].email);
+                printf("Contact added successfully.\n");
+                k++;
+                break;
+            case 2:
+                printf("Enter name to delete: ");
+                char delName[50];
+                scanf("%s", delName);
+                for(int i=0;i<k;i++)
+                {
+                    if(strcmp(delName,c[i].name) == 0)
+                    {
+                        for(int j=i;j<k-1;j++)
+                        {
+                            strcpy(c[j].name, c[j+1].name);
+                            c[j].ph = c[j+1].ph;
+                            strcpy(c[j].email, c[j+1].email);
+                        }
+                        k--;
+                        printf("Contact deleted successfully.\n");
+                        break;
+                    }
+                }
+                break;
+            case 3:
+                printf("Enter name to update: ");
+                char updateName[50];
+                scanf("%s", updateName);
+                for(int i=0;i<k;i++)
+                {
+                    if(strcmp(updateName, c[i].name) == 0)
+                    {
+                        printf("Enter new phone number: ");
+                        scanf("%d", &c[i].ph);
+                        printf("Enter new email: ");
+                        scanf("%s", c[i].email);
+                        printf("Contact updated successfully.\n");
+                        break;
+                    }
+                }
+                break;
+            case 4:
+                printf("Enter name to search: ");
+                char searchName[50];
+                scanf("%s",searchName);
+                for(int i=0;i<k;i++)
+                {
+                    if(strcmp(searchName, c[i].name) == 0)
+                    {
+                        printf("Phone: %d\n", c[i].ph);
+                        printf("Email: %s\n", c[i].email);
+                        break;
+                    }
+                }
+                break;
+            case 5:
+                for(int i=0;i<k-1;i++)
+                {
+                    for(int j=0;j<k-i-1;j++) 
+                    {
+                        if(strcmp(c[j].name,c[j+1].name)>0) 
+                        {
+                            struct contact temp=c[j];
+                            c[j]=c[j+1];
+                            c[j+1]=temp;
+                        }
+                    }
+                }
+
+                printf("Contact List:\n");
+                for (int i = 0; i < k; i++) {
+                    printf("Name: %s\n", c[i].name);
+                    printf("Phone: %d\n", c[i].ph);
+                    printf("Email: %s\n", c[i].email);
+                    printf("\n");
+                }
+                break;
+            case 6:
+                printf("Exiting...\n");
+                return 0;
+        }
+        printf("Do you want to continue (y/n)? ");
+        scanf(" %c", &s);
+    } while(s=='y');
+    return 0;
+}
