@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+
+class account{
+    int balance;
+    public:
+        int deposit(int x){
+            balance = balance + x;
+            return balance;
+        }
+        void withdraw(int y){
+            if (y<=balance){
+                balance = balance - y;
+                cout << balance;
+            }
+            else{
+                cout << "Debit amount exceeded current balance";
+            }
+        }
+        int getbalance(){
+            return (balance);
+        }
+        account(){
+            cout << "Enter initial savings: ";
+            cin >> balance;
+            if (balance < 0){
+                balance = 0;
+                cout << "Initial balance was invalid";
+            }
+        }
+};
+int main() {
+    account a;
+    int s1;
+    int check, amt;
+    while(1){
+        cout << "\nWould you like to deposit(1) or withdraw(2) or exit(-1)?: ";
+        cin >> check;
+        if (check == 1){
+            cout << "How much would you like to deposit?: ";
+            cin >> amt;
+            cout << a.deposit(amt);
+        }
+        else if (check == 2){
+            cout << "How much would you like to withdraw?: ";
+            cin >> amt;
+            a.withdraw(amt);
+        }
+        else{
+            break;
+        }
+    }
+    return 0;
+}
