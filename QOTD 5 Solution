@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
+void hanoi(int n, int rod1, int rod2, int rod3); //function declaration
+
+int main(){
+    int n;
+    printf("Enter number of discs: ");
+    scanf("%d", &n);
+    hanoi(n, 1, 2, 3); //numbers of rods in first, second, and third position respectively
+    printf("\n\nDiscs have been moved from rod 1 to rod 3 following the rules.");
+    return 0;
+}
+
+void hanoi(int n, int rod1, int rod2, int rod3){
+    if (n == 1){
+        printf("\nMove disk %c from rod %d to rod %d",(char)n+64, rod1, rod3);
+        return;
+    }
+    hanoi(n-1, rod1, rod3, rod2);
+    printf("\nMove disk %c from rod %d to rod %d", (char)n+64, rod1, rod3);
+    hanoi(n-1, rod2, rod1, rod3);
+}
