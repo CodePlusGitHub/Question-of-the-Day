@@ -1,0 +1,7 @@
+class Solution:
+    def majorityElement(self, A, N):
+       d=dict(Counter(A))
+       for j in d:
+           if d[j]>N/2:
+               return j
+       return -1
